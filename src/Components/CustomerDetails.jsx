@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FaBell,
   FaTicketAlt,
@@ -8,138 +8,107 @@ import {
   FaHome,
   FaFileInvoiceDollar,
   FaTasks,
-  FaBars,
-  FaTimes,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
 const CustomerDetails = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
+    <div className="flex min-h-screen">
       {/* Sidebar */}
-      {sidebarOpen && (
-        <aside className="w-full lg:w-64 text-black min-h-screen bg-white z-10 lg:relative fixed lg:static overflow-y-auto">
-          <div className="p-4 flex justify-between items-center lg:justify-center">
-            <img
-              src="/Images/Version 2 Fairy Craft Jewellery.png"
-              alt="Logo"
-              className="h-32 sm:h-40"
-            />
-            {/* Close button on mobile */}
-            <button
-              className="lg:hidden text-black text-2xl"
-              onClick={() => setSidebarOpen(false)}
-            >
-              <FaTimes />
+      <aside className="w-64 text-black min-h-screen overflow-y-auto">
+        <div className="p-4">
+          <img
+            src="/Images/Version 2 Fairy Craft Jewellery.png"
+            alt="Logo"
+            className="h-40"
+          />
+        </div>
+        <nav className="flex flex-col px-4 space-y-4">
+          <Link
+            to="/"
+            className="flex items-center px-4 py-2 bg-orange-500 rounded"
+          >
+            <FaHome className="mr-2" /> Home
+          </Link>
+          <div>
+            <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white">
+              <span className="flex items-center">
+                <FaFileInvoiceDollar className="mr-2" /> Billing
+              </span>
+              <FaPlus />
             </button>
+            <div className="pl-6 space-y-1 hidden">
+              <a href="#">Sales</a>
+              <a href="#">Purchases</a>
+              <a href="#">Orders</a>
+              <a href="#">Revenue</a>
+            </div>
           </div>
-          <nav className="flex flex-col px-4 space-y-2 pb-4">
-            <Link
-              to="/"
-              className="flex items-center px-4 py-2 bg-orange-500 text-white rounded"
-            >
-              <FaHome className="mr-2" /> Home
-            </Link>
-
-            {/* Billing Dropdown */}
-            <div>
-              <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white rounded">
-                <span className="flex items-center">
-                  <FaFileInvoiceDollar className="mr-2" /> Billing
-                </span>
-                <FaPlus />
-              </button>
-              <div className="pl-6 space-y-1 hidden">
-                <a href="#">Sales</a>
-                <a href="#">Purchases</a>
-                <a href="#">Orders</a>
-                <a href="#">Revenue</a>
-              </div>
+          <Link
+            to="/vendors"
+            className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
+          >
+            <FaTasks className="mr-2" /> Vendors
+          </Link>
+          <Link
+            to="/userdetails"
+            className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
+          >
+            <FaTasks className="mr-2" /> Users
+          </Link>
+          <Link
+            to="/customerdetails"
+            className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
+          >
+            <FaTasks className="mr-2" /> Customers
+          </Link>
+          <Link
+            to="/productdetails"
+            className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
+          >
+            <FaTasks className="mr-2" /> Products
+          </Link>
+          <div>
+            <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white">
+              <span className="flex items-center">
+                <FaFileInvoiceDollar className="mr-2" /> Settings
+              </span>
+              <FaPlus />
+            </button>
+            <div className="pl-6 space-y-1 hidden">
+              <a href="#">Category</a>
+              <a href="#">Sub Category</a>
+              <a href="#">Unit</a>
+              <a href="#">User Role </a>
             </div>
-
-            {/* Properly aligned nav links */}
-            <Link
-              to="/vendors"
-              className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white rounded"
-            >
-              <FaTasks className="mr-2" /> Vendors
-            </Link>
-            <Link
-              to="/userdetails"
-              className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white rounded"
-            >
-              <FaTasks className="mr-2" /> Users
-            </Link>
-            <Link
-              to="/customerdetails"
-              className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white rounded"
-            >
-              <FaTasks className="mr-2" /> Customers
-            </Link>
-            <Link
-              to="/productdetails"
-              className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white rounded"
-            >
-              <FaTasks className="mr-2" /> Products
-            </Link>
-
-            {/* Settings Dropdown */}
-            <div>
-              <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white rounded">
-                <span className="flex items-center">
-                  <FaFileInvoiceDollar className="mr-2" /> Settings
-                </span>
-                <FaPlus />
-              </button>
-              <div className="pl-6 space-y-1 hidden">
-                <a href="#">Category</a>
-                <a href="#">Sub Category</a>
-                <a href="#">Unit</a>
-                <a href="#">User Role </a>
-              </div>
+          </div>
+          <div>
+            <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white">
+              <span className="flex items-center">
+                <FaFileInvoiceDollar className="mr-2" /> Finance
+              </span>
+              <FaPlus />
+            </button>
+            <div className="pl-6 space-y-1 hidden">
+              <a href="#">Inventory</a>
+              <a href="#">Items</a>
             </div>
-
-            {/* Finance Dropdown */}
-            <div>
-              <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white rounded">
-                <span className="flex items-center">
-                  <FaFileInvoiceDollar className="mr-2" /> Finance
-                </span>
-                <FaPlus />
-              </button>
-              <div className="pl-6 space-y-1 hidden">
-                <a href="#">Inventory</a>
-                <a href="#">Items</a>
-              </div>
-            </div>
-          </nav>
-        </aside>
-      )}
+          </div>
+        </nav>
+      </aside>
 
       {/* Main Section */}
-      <main className="flex-1 bg-gray-100 flex flex-col min-h-screen">
+      <main className="flex-1 bg-gray-100">
         {/* Topbar */}
-        <div className="flex justify-between items-center p-4 bg-white shadow">
-          <button
-            className="text-black text-2xl lg:hidden"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
-            <FaBars />
-          </button>
-
-          <div className="flex items-center space-x-4 ml-auto">
-            <FaBell className="text-lg" />
-            <img
-              src="/Images/Test Profile.png"
-              alt="Profile"
-              className="w-10 h-10 rounded-full"
-            />
-            <div className="text-sm text-right">
-              <p className="text-red-500 font-semibold">Ella Jones</p>
-              <p className="text-gray-600">Admin</p>
-            </div>
+        <div className="flex justify-end items-center p-4 bg-white shadow">
+          <FaBell className="mr-4" />
+          <img
+            src="/Images/Test Profile.png"
+            alt="Profile"
+            className="w-10 h-10 rounded-full"
+          />
+          <div className="ml-4">
+            <p className="text-red-500">Ella Jones</p>
+            <p className="text-sm">Admin</p>
           </div>
         </div>
 
@@ -162,15 +131,12 @@ const CustomerDetails = () => {
             <thead className="bg-black text-white">
               <tr>
                 <th className="px-4 py-2 text-left">Date</th>
-                <th className="px-4 py-2 text-left">Customer Name</th>
-                <th className="px-4 py-2 text-left">Phone Number</th>
-                <th className="px-4 py-2 text-left">Email</th>
+                <th className="px-4 py-2 text-left">Customers Name</th>
+                <th className="px-4 py-2 text-left">Phone Number </th>
+                <th className="px-4 py-2 text-left">Email </th>
                 <th className="px-4 py-2 text-left">Status</th>
               </tr>
             </thead>
-            <tbody>
-              {/* Table rows can be added here */}
-            </tbody>
           </table>
         </div>
       </main>
