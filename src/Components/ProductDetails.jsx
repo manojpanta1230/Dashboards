@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   FaBell,
   FaTicketAlt,
@@ -12,91 +13,118 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 const ProductDetails = () => {
+    const [activeMenu, setActiveMenu] = useState(null); // tracks which submenu is open
+  
+    const toggleMenu = (menuName) => {
+      setActiveMenu((prev) => (prev === menuName ? null : menuName));
+    };
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="w-64 text-black min-h-screen overflow-y-auto">
-        <div className="p-4">
-          <img
-            src="/Images/Version 2 Fairy Craft Jewellery.png"
-            alt="Logo"
-            className="h-40"
-          />
-        </div>
-        <nav className="flex flex-col px-4 space-y-4">
-          <Link
-            to="/"
-            className="flex items-center px-4 py-2 bg-orange-500 rounded"
-          >
-            <FaHome className="mr-2" /> Home
-          </Link>
-          <div>
-            <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white">
-              <span className="flex items-center">
-                <FaFileInvoiceDollar className="mr-2" /> Billing
-              </span>
-              <FaPlus />
-            </button>
-            <div className="pl-6 space-y-1 hidden">
-              <a href="#">Sales</a>
-              <a href="#">Purchases</a>
-              <a href="#">Orders</a>
-              <a href="#">Revenue</a>
+         <aside className="w-64 text-black flex flex-col bg-white">
+            <div className="p-4">
+              <img
+                src="/Images/Version 2 Fairy Craft Jewellery.png"
+                alt="Logo"
+                className="h-40"
+              />
             </div>
-          </div>
-          <Link
-            to="/vendors"
-            className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
-          >
-            <FaTasks className="mr-2" /> Vendors
-          </Link>
-          <Link
-            to="/userdetails"
-            className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
-          >
-            <FaTasks className="mr-2" /> Users
-          </Link>
-          <Link
-            href="/customerdetails"
-            className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
-          >
-            <FaTasks className="mr-2" /> Customers
-          </Link>
-          <Link
-            to="/productdetails"
-            className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
-          >
-            <FaTasks className="mr-2" /> Products
-          </Link>
-          <div>
-            <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white">
-              <span className="flex items-center">
-                <FaFileInvoiceDollar className="mr-2" /> Settings
-              </span>
-              <FaPlus />
-            </button>
-            <div className="pl-6 space-y-1 hidden">
-              <a href="#">Category</a>
-              <a href="#">Sub Category</a>
-              <a href="#">Unit</a>
-              <a href="#">User Role </a>
-            </div>
-          </div>
-          <div>
-            <button className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white">
-              <span className="flex items-center">
-                <FaFileInvoiceDollar className="mr-2" /> Finance
-              </span>
-              <FaPlus />
-            </button>
-            <div className="pl-6 space-y-1 hidden">
-              <a href="#">Inventory</a>
-              <a href="#">Items</a>
-            </div>
-          </div>
-        </nav>
-      </aside>
-
+            <nav className="flex-1 px-4 space-y-4">
+              <Link
+                to="/"
+                className="flex items-center px-4 py-2 bg-orange-500 rounded"
+              >
+                <FaHome className="mr-2" /> Home
+              </Link>
+    
+              {/* Billing Menu */}
+              <div>
+                <button
+                  className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white"
+                  onClick={() => toggleMenu("billing")}
+                >
+                  <span className="flex items-center">
+                    <FaFileInvoiceDollar className="mr-2" /> Billing
+                  </span>
+                  <FaPlus />
+                </button>
+                {activeMenu === "billing" && (
+                  <div className="pl-6 space-y-1 flex flex-col bg-white shadow-2xl">
+                    <Link to="#" className="hover:text-red-500">Sales</Link>
+                    <Link to="#" className="hover:text-red-500">Purchases</Link>
+                    <Link to="#" className="hover:text-red-500">Orders</Link>
+                    <Link to="#" className="hover:text-red-500">Revenue</Link>
+                  </div>
+                )}
+              </div>
+    
+              {/* Static Links */}
+              <Link
+                to="/vendors"
+                className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
+              >
+                <FaTasks className="mr-2" /> Vendors
+              </Link>
+              <Link
+                to="/userdetails"
+                className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
+              >
+                <FaTasks className="mr-2" /> Users
+              </Link>
+              <Link
+                to="/customerdetails"
+                className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
+              >
+                <FaTasks className="mr-2" /> Customers
+              </Link>
+              <Link
+                to="/productdetails"
+                className="flex items-center px-4 py-2 hover:bg-gray-700 hover:text-white"
+              >
+                <FaTasks className="mr-2" /> Products
+              </Link>
+    
+              {/* Settings Menu */}
+              <div>
+                <button
+                  className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white"
+                  onClick={() => toggleMenu("settings")}
+                >
+                  <span className="flex items-center">
+                    <FaFileInvoiceDollar className="mr-2" /> Settings
+                  </span>
+                  <FaPlus />
+                </button>
+                {activeMenu === "settings" && (
+                  <div className="pl-6 space-y-1 flex flex-col bg-white shadow-2xl">
+                    <Link to="#" className="hover:text-red-500">Category</Link>
+                    <Link to="#" className="hover:text-red-500">Sub Category</Link>
+                    <Link to="#" className="hover:text-red-500">Unit</Link>
+                    <Link to="#" className="hover:text-red-500">User Role</Link>
+                  </div>
+                )}
+              </div>
+    
+              {/* Finance Menu */}
+              <div>
+                <button
+                  className="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-700 hover:text-white"
+                  onClick={() => toggleMenu("finance")}
+                >
+                  <span className="flex items-center">
+                    <FaFileInvoiceDollar className="mr-2" /> Finance
+                  </span>
+                  <FaPlus />
+                </button>
+                {activeMenu === "finance" && (
+                  <div className="pl-6 space-y-1 flex flex-col bg-white shadow-2xl">
+                    <Link to="#" className="hover:text-red-500">Inventory</Link>
+                    <Link to="#" className="hover:text-red-500">Items</Link>
+                  </div>
+                )}
+              </div>
+            </nav>
+          </aside>
       {/* Main Section */}
       <main className="flex-1 bg-gray-100">
         {/* Topbar */}
